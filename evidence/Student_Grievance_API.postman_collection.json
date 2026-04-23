@@ -1,0 +1,132 @@
+{
+  "info": {
+    "name": "Student Grievance MERN APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"testuser1@example.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": "{{baseUrl}}/register"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"testuser1@example.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": "{{baseUrl}}/login"
+      }
+    },
+    {
+      "name": "Submit Grievance",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Mess food issue\",\n  \"description\": \"Food quality is poor\",\n  \"category\": \"Hostel\",\n  \"status\": \"Pending\"\n}"
+        },
+        "url": "{{baseUrl}}/grievances"
+      }
+    },
+    {
+      "name": "Get All Grievances",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": "{{baseUrl}}/grievances"
+      }
+    },
+    {
+      "name": "Get Grievance By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": "{{baseUrl}}/grievances/{{grievanceId}}"
+      }
+    },
+    {
+      "name": "Update Grievance",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Resolved\"\n}"
+        },
+        "url": "{{baseUrl}}/grievances/{{grievanceId}}"
+      }
+    },
+    {
+      "name": "Delete Grievance",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": "{{baseUrl}}/grievances/{{grievanceId}}"
+      }
+    },
+    {
+      "name": "Search Grievance",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": "{{baseUrl}}/grievances/search?title=mess"
+      }
+    },
+    {
+      "name": "Invalid Login (error check)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"testuser1@example.com\",\n  \"password\": \"wrongpass\"\n}"
+        },
+        "url": "{{baseUrl}}/login"
+      }
+    },
+    {
+      "name": "Unauthorized (error check)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/grievances"
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5001/api" },
+    { "key": "token", "value": "" },
+    { "key": "grievanceId", "value": "" }
+  ]
+}
