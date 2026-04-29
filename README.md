@@ -87,6 +87,12 @@ You can deploy both services using render.yaml:
    - frontend: VITE_API_BASE_URL (set to deployed backend URL + /api)
 4. Deploy both services.
 
+### Important for MongoDB Atlas on Render
+
+- In [render.yaml](render.yaml), `MONGO_URI` uses `sync: false`, so Render will not auto-update it from repo changes.
+- Update `MONGO_URI` manually in Render service environment variables after password changes.
+- If MongoDB password has special characters (`@`, `:`, `/`, `?`, `#`), URL-encode the password in the URI.
+
 ## Submission Checklist (as per question)
 
 Include in your report PDF:
